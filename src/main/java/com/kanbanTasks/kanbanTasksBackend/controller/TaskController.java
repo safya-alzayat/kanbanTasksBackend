@@ -6,6 +6,8 @@ import java.util.List;
 import com.kanbanTasks.kanbanTasksBackend.model.Task;
 import com.kanbanTasks.kanbanTasksBackend.service.TaskService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/tasks")
 @CrossOrigin(origins = "http://localhost:5173") // allow frontend dev server
@@ -23,12 +25,12 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
+    public Task createTask(@Valid @RequestBody Task task) {
         return service.createTask(task);
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+    public Task updateTask(@PathVariable Long id, @Valid@RequestBody Task updatedTask) {
         return service.updateTask(id, updatedTask);
     }
 
