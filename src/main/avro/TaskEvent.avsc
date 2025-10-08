@@ -1,0 +1,12 @@
+{
+  "namespace": "com.kanbanTasks.events",
+  "type": "record",
+  "name": "TaskEvent",
+  "fields": [
+    { "name": "id", "type": "long" },
+    { "name": "title", "type": "string" },
+    { "name": "status", "type": "string" },
+    { "name": "priority", "type": "string" },
+    { "name": "tag", "type": ["null", "string"], "default": null }
+  ]
+}

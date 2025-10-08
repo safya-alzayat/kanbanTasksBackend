@@ -2,6 +2,7 @@ package com.kanbanTasks.kanbanTasksBackend.service;
 
 import com.kanbanTasks.kanbanTasksBackend.model.Task;
 import com.kanbanTasks.kanbanTasksBackend.repository.TaskRepository;
+import com.kanbanTasks.kanbanTasksBackend.kafka.TaskProducer;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,13 +15,16 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository repository;
+    private final TaskProducer taskProducer;
 
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
 
     public Task createTask(Task task) {
-        return repository.save(task);
+        Task saved = repository.save(task);
+        taskProducer.sendTaskEvent(saved);
+        return saved;
     }
 
     public Task updateTask(Long id, Task updatedTask) {
@@ -30,7 +34,9 @@ public class TaskService {
             task.setStatus(updatedTask.getStatus());
             task.setPriority(updatedTask.getPriority());
             task.setCreatedAt(updatedTask.getCreatedAt());
-            return repository.save(task);
+            Task saved = repository.save(task);
+            taskProducer.sendTaskEvent(saved);
+            return saved;
         }).orElseThrow(() -> new RuntimeException("Task not found: " + id));
     }
 
