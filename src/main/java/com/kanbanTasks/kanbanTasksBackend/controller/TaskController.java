@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tasks")
-@CrossOrigin(origins = "http://localhost:5173") // allow frontend dev server
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
     private final TaskService service;
