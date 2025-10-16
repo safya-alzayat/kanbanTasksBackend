@@ -29,5 +29,7 @@ public class Task {
 
     @NotNull(message = "CreatedAt timestamp is required")
     private Long createdAt;
+
+    private String assignedTo;
 }
 

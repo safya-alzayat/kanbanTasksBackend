@@ -7,6 +7,7 @@
     { "name": "title", "type": "string" },
     { "name": "status", "type": "string" },
     { "name": "priority", "type": "string" },
-    { "name": "tag", "type": ["null", "string"], "default": null }
+    { "name": "tag", "type": ["null", "string"], "default": null },
+    { "name": "assignedTo", "type": ["null", "string"], "default": null }
   ]
 }

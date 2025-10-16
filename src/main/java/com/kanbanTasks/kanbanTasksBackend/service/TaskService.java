@@ -34,6 +34,7 @@ public class TaskService {
             task.setStatus(updatedTask.getStatus());
             task.setPriority(updatedTask.getPriority());
             task.setCreatedAt(updatedTask.getCreatedAt());
+            task.setAssignedTo(updatedTask.getAssignedTo());
             Task saved = repository.save(task);
             taskProducer.sendTaskEvent(saved);
             return saved;
