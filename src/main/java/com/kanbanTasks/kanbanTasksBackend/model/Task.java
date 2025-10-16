@@ -23,8 +23,9 @@ public class Task {
     @NotBlank(message = "Status must be provided")
     private String status;
     
-    @NotBlank(message = "Priority must be provided")
-    private String priority;
+    @NotNull(message = "Priority must be provided")
+    @Enumerated(EnumType.ORDINAL)
+    private Priority priority;
 
     @NotNull(message = "CreatedAt timestamp is required")
     private Long createdAt;

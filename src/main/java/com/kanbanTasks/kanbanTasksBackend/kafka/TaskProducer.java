@@ -22,7 +22,7 @@ public class TaskProducer {
                 .setTitle(task.getTitle())
                 .setTag(task.getTag())
                 .setStatus(task.getStatus())
-                .setPriority(task.getPriority())
+                .setPriority(task.getPriority().name())
                 .build();
         kafkaTemplate.send(TOPIC, event);
         log.info("[KAFKA] Sent task event for ID: {}", task.getId());
